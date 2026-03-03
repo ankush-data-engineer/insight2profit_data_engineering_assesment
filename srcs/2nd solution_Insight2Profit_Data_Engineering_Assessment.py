@@ -68,9 +68,9 @@ def load_raw_data(spark):
     ])
     
     # Load raw data
-    raw_products = spark.read.csv("products.csv", header=True, schema=products_schema)
-    raw_sales_header = spark.read.csv("sales_order_header.csv", header=True, schema=header_schema)
-    raw_sales_detail = spark.read.csv("sales_order_detail.csv", header=True, schema=detail_schema)
+    raw_products = spark.read.csv("/Workspace/Users/educateankush@gmail.com/insight2profit_data_engineering_assesment/products.csv", header=True, schema=products_schema)
+    raw_sales_header = spark.read.csv("/Workspace/Users/educateankush@gmail.com/insight2profit_data_engineering_assesment/sales_order_header.csv", header=True, schema=header_schema)
+    raw_sales_detail = spark.read.csv("/Workspace/Users/educateankush@gmail.com/insight2profit_data_engineering_assesment/sales_order_detail.csv", header=True, schema=detail_schema)
     
     # Create temp views with raw_ prefix
     raw_products.createOrReplaceTempView("raw_products")
@@ -356,8 +356,7 @@ def main():
     except Exception as e:
         print(f"\n✗ Error occurred: {str(e)}")
         raise
-    finally:
-        spark.stop()
+    # Removed spark.stop() from finally block
 
 
 if __name__ == "__main__":
